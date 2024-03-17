@@ -1,14 +1,37 @@
 import { StyleSheet } from 'react-native'
+import { theme } from '../../theme'
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1A1A1A',
+    backgroundColor: theme.colors.gray600,
   },
   header: {
-    backgroundColor: '#0D0D0D',
+    backgroundColor: theme.colors.gray700,
     alignItems: 'center',
-    paddingTop: 64,
-    paddingBottom: 40
-  }
+    paddingVertical: 64,
+  },
+  form: {
+    flexDirection: 'row',
+    gap: 4,
+    marginTop: -32,
+    paddingHorizontal: 24
+  },
+  input: {
+    flex: 1,
+    height: 54,
+    backgroundColor: theme.colors.gray500,
+    color: theme.colors.gray100,
+    padding: 16,
+    borderWidth: 1,
+    borderColor: theme.colors.gray700,
+    borderRadius: 6,
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.colors.blueDark,
+    padding: 18,
+    borderRadius: 6,
+  },
 })
