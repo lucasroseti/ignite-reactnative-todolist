@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, FlatList, Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { PlusCircle } from 'phosphor-react-native'
 import * as Crypto from 'expo-crypto'
 
@@ -31,6 +31,21 @@ export function Home() {
 
       return task
     }))
+  }
+
+  function handleTaskRemove(id: string) {
+    Alert.alert('Remove', `Remover tarefa?`,[
+      {
+        text: 'Yes',
+        onPress: () => {
+          setTasks(prevState => prevState.filter(task => task.id !== id))
+        }
+      },
+      {
+        text: 'Cancel',
+        style: 'cancel'
+      }
+    ])
   }
 
   return (
@@ -68,6 +83,7 @@ export function Home() {
             title={item.title}
             completed={item.completed}
             onHandleCheck={handleTaskCheck}
+            onHandleRemove={handleTaskRemove}
           />
         )}
         ListEmptyComponent={() => (

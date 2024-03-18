@@ -16,9 +16,10 @@ export interface TaskProps {
   title: string
   completed: boolean
   onHandleCheck: (id: string, isChecked: boolean) => void
+  onHandleRemove: (id: string) => void
 }
 
-export function Task({ id, title, completed, onHandleCheck }: TaskProps) {
+export function Task({ id, title, completed, onHandleCheck, onHandleRemove }: TaskProps) {
   function handleCheck(isChecked: boolean) {
     onHandleCheck(id, isChecked)
   }
@@ -27,7 +28,7 @@ export function Task({ id, title, completed, onHandleCheck }: TaskProps) {
     <View style={styles.container}>
       <Checkbox isChecked={completed} onHandleCheck={handleCheck} />
       <Text style={completed ? styles.titleChecked : styles.title}>{ title }</Text>
-      <TouchableOpacity style={styles.buttonRemove}>
+      <TouchableOpacity style={styles.buttonRemove} onPress={() => onHandleRemove(id)}>
         <Trash size={16} color={theme.colors.gray300}/>
       </TouchableOpacity>
     </View>
