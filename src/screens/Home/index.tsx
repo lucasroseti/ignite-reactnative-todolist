@@ -1,16 +1,27 @@
 import { useState } from 'react'
 import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { PlusCircle } from 'phosphor-react-native'
+import * as Crypto from 'expo-crypto'
 
 import { Info } from '../../components/Info'
 import { Empty } from '../../components/Empty'
 import { Task, TaskType } from '../../components/Task'
-
 import { styles } from './styles'
 import { theme } from '../../theme'
 
 export function Home() {
   const [tasks, setTasks] = useState<TaskType[]>([])
+  const [taskText, setTaskText] = useState('')
+
+  function handleTaskAdd() {
+    const newTask =  {
+      id: Crypto.randomUUID(),
+      title: taskText,
+      completed: false
+    }
+    setTasks(prevState => [...prevState, newTask])
+    setTaskText('')
+  }
 
   function handleTaskCheck(id: string, isChecked: boolean) {
     setTasks(prevState => prevState.map(task => {
@@ -36,8 +47,9 @@ export function Home() {
           style={styles.input}
           placeholder="Adicione uma nova tarefa"
           placeholderTextColor={theme.colors.gray300}
+          onChangeText={setTaskText}
         />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleTaskAdd}>
           <Text>
             <PlusCircle size={16} color="#FFF" />
           </Text>
