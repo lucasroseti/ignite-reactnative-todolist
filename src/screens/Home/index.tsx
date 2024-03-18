@@ -13,6 +13,9 @@ export function Home() {
   const [tasks, setTasks] = useState<TaskType[]>([])
   const [taskText, setTaskText] = useState('')
 
+  const totalTasks = tasks.length
+  const totalTasksCompleted = tasks.filter(task => task.completed).length
+
   function handleTaskAdd() {
     const newTask =  {
       id: Crypto.randomUUID(),
@@ -71,7 +74,7 @@ export function Home() {
         </TouchableOpacity>
       </View>
 
-      <Info />
+      <Info created={totalTasks} completed={totalTasksCompleted} />
 
       <FlatList 
         data={tasks}
