@@ -6,6 +6,8 @@ export function Empty() {
     <View style={styles.container}>
       <View style={styles.image}>
         <Image
+          width={72}
+          height={72}
           source={require('../../../assets/clipboard.png')}
           alt="Clipboard"
         />

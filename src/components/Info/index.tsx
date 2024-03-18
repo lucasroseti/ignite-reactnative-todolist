@@ -1,6 +1,7 @@
 import { View } from 'react-native'
-import { styles } from './styles'
+
 import { InfoItem } from '../InfoItem'
+import { styles } from './styles'
 
 interface InfoProps {
   created: number

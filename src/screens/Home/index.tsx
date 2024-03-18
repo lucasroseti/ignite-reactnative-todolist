@@ -14,14 +14,19 @@ export function Home() {
   const [taskText, setTaskText] = useState('')
 
   const totalTasks = tasks.length
-  const totalTasksCompleted = tasks.filter(task => task.completed).length
+  const totalTasksCompleted = tasks.reduce(function(completed, task) {
+    return task.completed ? completed+1 : completed
+  }, 0)
 
   function handleTaskAdd() {
+    if (taskText === '') return
+
     const newTask =  {
       id: Crypto.randomUUID(),
       title: taskText,
       completed: false
     }
+
     setTasks(prevState => [...prevState, newTask])
     setTaskText('')
   }
@@ -65,6 +70,7 @@ export function Home() {
           style={styles.input}
           placeholder="Adicione uma nova tarefa"
           placeholderTextColor={theme.colors.gray300}
+          value={taskText}
           onChangeText={setTaskText}
         />
         <TouchableOpacity style={styles.button} onPress={handleTaskAdd}>

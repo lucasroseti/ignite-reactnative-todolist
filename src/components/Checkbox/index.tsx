@@ -1,8 +1,8 @@
 import { TouchableOpacity } from 'react-native'
 import { Check } from 'phosphor-react-native'
 
-import { theme } from '../../theme'
 import { styles } from './styles'
+import { theme } from '../../theme'
 
 interface CheckBoxProps {
   isChecked: boolean
